@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body ng-app="myApp">
+    <div ng-controller="myController">
+      <h1 class="text-primary text-center">{{title}}</h1>
+      <form ng-submit="handleSubmit()" name="form">
+        <div class="mb-3">
+          <label class="form-label">Ten</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            ng-model="inputValue.name"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Gioi Tinh</label>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              ng-model="inputValue.gender"
+              value="0"
+            />
+            <label class="form-check-label">Nam</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              ng-model="inputValue.gender"
+              value="1"
+            />
+            <label class="form-check-label">Nu</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nam Sinh</label>
+          <input
+            type="text"
+            class="form-control"
+            name="birthday"
+            ng-model="inputValue.birthday"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Level</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="level"
+            ng-model="inputValue.level"
+          >
+            <option selected>Open this select menu</option>
+            <option value="1">Cap 1</option>
+            <option value="2">Cap 2</option>
+            <option value="3">Cap 3</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">So H Lv</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hour"
+            ng-model="inputValue.hour"
+          />
+        </div>
+
+        <button class="btn btn-primary">Submit</button>
+      </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Ten</th>
+            <th scope="col">Gioi Tinh</th>
+            <th scope="col">Nam Sinh</th>
+            <th scope="col">Level</th>
+            <th scope="col">So H Lv</th>
+            <th scope="col">Chuc Nang</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in data track by $index">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.gender === 0 ? "Nam" : "Nu"}}</td>
+            <td>{{item.birthday}}</td>
+            <td>Cap {{item.level}}</td>
+            <td>{{item.hour}}</td>
+            <td>
+              <button class="btn btn-warning">Update</button>
+              <button class="btn btn-danger" ng-click="handleDelete(item.id)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="indexController.js"></script>
+  </body>
+</html>
